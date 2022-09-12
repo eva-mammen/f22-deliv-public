@@ -7,11 +7,22 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import EntryModal from './EntryModal';
-import { getCategory } from '../utils/categories';
-
+import { getCategory } from '../utils/categories'; 
 // Table component that displays entries on home screen
 
 export default function EntryTable({ entries }) {
+   const sortedEntries = entries.sort((a, b) => {
+      let fa = a.name.toLowerCase(),
+          fb = b.name.toLowerCase();
+  
+      if (fa < fb) {
+          return -1;
+      }
+      if (fa > fb) {
+          return 1;
+      }
+      return 0;
+  });
    return (
       <TableContainer component={Paper}>
          <Table sx={{ minWidth: 650 }} aria-label="simple table">
